@@ -1,17 +1,70 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Tareas Completadas
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!--Crear estructura, como tabla-->
+  <ion-row>
+    <ion-col>
+      <ion-list>
+        <!--Dos partes
+          1:Consulta general (for en ion item) *ngFor="let item of tasks;"
+          2:Delete con ion item sliding, para registros flotantes que tengan varias opciones
+          ir guardando indice para borrar tras ; en for-->
+        <ion-item-sliding *ngFor="let item of comptasks; let i=index">
+          <ion-item >
+            <ion-label>{{item}} </ion-label>
+          </ion-item>
+          <!--
+            Side end para el lado derecho
+            Cada accion es un ion item option
+            Poner boton de borrar con icono basura
+            poner expandir 
+            funcionalidad en options sobreescribir un metodo que no existe en js - ionSwipe
+            Cuando se terminen ejercicio, si on salio, ayudar a quien no le salio
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+            Ejercicio tarea de u3 pero ahorita:
+            Hacer este tipo de app pero en un template de tabs,
+            en tab 1 poner el código de home
+            crear servicio y que funcione lo mismo
+            añadir la funcionalidad de completar tareas (slide desde izquierda)
+            Añadir tareas completadas a una lista que se vea en la segunda pestaña con la funcionalidad de descompletar tareas (slide)
+            en pwa usar ionic serve para probar/desarrollar y para pruebas usar appflow/firebase
+            
+            Entregables:
+              Documento de google doc en carpeta u3 (en este caso)
+                Portada
+                Enlace a appflow (enlace o qr o necesario)
+                Enlace a github
+                  La calificacion se determina en base a las contribuciones a los repos
+              Manual de usuario (proyectos finales)
+              Tutorial (proyectos finales)
+              Fecha: Domingo en la noche 23/10 23:59 
+              Sig clase viernes
+              El profe prepara ejercicio
+              Viernes es para dudas, venir de todas maneras
+              Poner en acuerdo
+              Viene en la u2 lo de despliegue, infografía y manera de instalacion
+              Kahoot para práctica
+              el kahoot se hace el lunes con examen viernes 28
+              El martes empezamos u3, cosas más profundas
+              ej: Login, rutas, parametros entre pantallas, menu
+
+
+
+          -->
+          <ion-item-options side="end" (ionSwipe)="unremoveTask(i)">
+            <ion-item-option expandable color="success" >
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+
 </ion-content>
