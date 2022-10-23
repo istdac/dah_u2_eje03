@@ -14,7 +14,7 @@ export class Tab2Page {
   }
 
   public unremoveTask(pos: number){
-    this.taskService.undeleteTask(pos);
+    this.taskService.uncompleteTask(pos);
     this.comptasks=this.taskService.getCompTasks();
   }
 }

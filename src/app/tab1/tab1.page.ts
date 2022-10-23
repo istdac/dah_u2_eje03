@@ -22,6 +22,11 @@ export class Tab1Page {
   }
   public removeTask(pos: number){
     this.taskService.deleteTask(pos);
+    //console.log(this.taskService.getCompTasks());
+    this.tasks=this.taskService.getTasks();
+  }
+  public completeTask(pos: number){
+    this.taskService.completeTask(pos);
     console.log(this.taskService.getCompTasks());
     this.tasks=this.taskService.getTasks();
   }
