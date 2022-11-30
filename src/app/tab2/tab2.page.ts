@@ -1,3 +1,4 @@
+import { Task } from './../models/task';
 import { Component } from '@angular/core';
 import { TaskService } from '../services/task.service';
 @Component({
@@ -6,15 +7,18 @@ import { TaskService } from '../services/task.service';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  public comptasks: string[];
+  public comptasks: Task[];
   public task: string;
   constructor(private taskService: TaskService) {
-    this.comptasks=this.taskService.getCompTasks();
-    console.log(this.comptasks);
+    //this.comptasks=this.taskService.getCompTasks();
+   // console.log(this.comptasks);
+   this.taskService.getCompTasks().subscribe(res=>{
+    this.comptasks=res;
+   });
   }
 
-  public unremoveTask(pos: number){
-    this.taskService.uncompleteTask(pos);
-    this.comptasks=this.taskService.getCompTasks();
+  public unremoveTask(id: string){
+    this.taskService.uncompleteTask(id);
+    //this.comptasks=this.taskService.getCompTasks();
   }
 }

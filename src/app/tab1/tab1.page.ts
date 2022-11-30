@@ -1,3 +1,4 @@
+import { Task } from './../models/task';
 import { Component } from '@angular/core';
 import { TaskService } from '../services/task.service';
 @Component({
@@ -6,29 +7,29 @@ import { TaskService } from '../services/task.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  public tasks: string[];
+  public tasks: Task[];
   public task: string;
   constructor(private taskService: TaskService) {
-    this.tasks=this.taskService.getTasks();
+    //this.tasks=this.taskService.getTasks();
+    this.taskService.getTasks().subscribe(res=>{
+      this.tasks=res;
+    });
     this.task='algo';
   }
 
   public addTask(){
     this.taskService.addTask(this.task);
-    this.tasks=this.taskService.getTasks();
     console.log(this.tasks);
     this.task='';
 
   }
-  public removeTask(pos: number){
-    this.taskService.deleteTask(pos);
+  public removeTask(id: string){
+    this.taskService.deleteTask(id);
     //console.log(this.taskService.getCompTasks());
-    this.tasks=this.taskService.getTasks();
   }
-  public completeTask(pos: number){
-    this.taskService.completeTask(pos);
-    console.log(this.taskService.getCompTasks());
-    this.tasks=this.taskService.getTasks();
+  public completeTask(id: string){
+    this.taskService.completeTask(id);
+    //console.log(this.taskService.getCompTasks());
   }
 
 }
